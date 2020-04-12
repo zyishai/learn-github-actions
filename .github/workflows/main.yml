@@ -13,12 +13,12 @@ jobs:
 
       - name: 'find last tag and release'
         id: 'last_tag'
-        uses: 'zyishai/last-tag-and-release'
+        uses: 'zyishai/last-tag-and-release@master'
 
       - name: 'bump version'
         id: bump
         if: steps.last_tag.outputs.release != 'none'
-        uses: 'zyishai/semver-bump'
+        uses: 'zyishai/semver-bump@master'
         with:
           current_version: ${{ steps.last_tag.outputs.last_tag }}
           release: ${{ steps.last_tag.outputs.release }}
@@ -29,7 +29,7 @@ jobs:
 
       - name: 'push new version to github'
         if: steps.last_tag.outputs.release != 'none'
-        uses: 'zyishai/push-new-tag'
+        uses: 'zyishai/push-new-tag@master'
         with:
           owner: zyishai
           github_token: ${{ secrets.GITHUB_TOKEN }}
