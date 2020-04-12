@@ -15,4 +15,4 @@ jobs:
         with:
           current_version: '1.0.2'
       - name: 'print new version'
-        run: echo new version is ${{ bump.outputs.new_version }}
+        run: echo new version is ${{ steps.bump.outputs.new_version }}
