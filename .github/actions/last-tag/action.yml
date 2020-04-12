@@ -7,5 +7,5 @@ outputs:
 
 runs:
     using: 'docker'
-    image: 'docker://alpine/git:2.24.1'
+    image: 'docker://alpine/git:v2.24.1'
     entrypoint: './scripts/find_last_tag.sh'
