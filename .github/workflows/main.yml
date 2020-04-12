@@ -5,9 +5,10 @@ on:
     branches:
       - master
 
+env:
+  version: '0.0.0'
+
 jobs:
-  env:
-    version: '0.0.0'
   bump_version:
     runs-on: ubuntu-latest
     steps:
