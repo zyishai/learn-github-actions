@@ -1,4 +1,4 @@
 .DS_*
 *.local
 *.empty
-do_not_commit
+*do_not_commit
