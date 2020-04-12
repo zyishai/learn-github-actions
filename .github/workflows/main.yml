@@ -27,6 +27,14 @@ jobs:
         if: steps.last_tag.outputs.release != 'none'
         run: echo "new version is ${{ steps.bump.outputs.new_version }}"
 
+      - name: 'push new version to github'
+        if: steps.last_tag.outputs.release != 'none'
+        uses: './.github/actions/create-new-tag'
+        with:
+          owner: zyishai
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ steps.bump.outputs.new_version }}
+
       - name: 'print no new version'
         if: steps.last_tag.outputs.release == 'none'
         run: echo "new version not created"
