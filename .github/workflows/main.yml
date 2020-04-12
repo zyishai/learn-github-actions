@@ -9,6 +9,7 @@ jobs:
   bump_version:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: 'bump version'
         id: bump
         uses: './.github/actions/semver'
