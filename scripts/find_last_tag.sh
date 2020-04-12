@@ -1,5 +1,9 @@
 #! /bin/sh -l
 
+# fetch all tags
+git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+# find the latest tag
 t=$(git describe --tags `git rev-list --tags --max-count=1`)
 
 if [ -z "$t" ]
