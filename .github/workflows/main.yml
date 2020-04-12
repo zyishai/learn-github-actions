@@ -5,9 +5,6 @@ on:
     branches:
       - master
 
-env:
-  version: '0.0.0'
-
 jobs:
   bump_version:
     runs-on: ubuntu-latest
@@ -15,18 +12,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: 'find last tag'
         id: 'last_tag'
-        uses: 'WyriHaximus/github-action-get-previous-tag@0.1.0'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'set the last version'
-        if: success()
-        run: echo "::set-env name=version::${{ steps.last_tag.outputs.tag }}"
+        uses: './.github/actions/last-tag'
       - name: 'bump version'
         id: bump
         if: always()
         uses: './.github/actions/semver'
         with:
-          current_version: ${{ env.version }}
+          current_version: ${{ steps.last_tag.outputs.last_tag }}
       - name: 'print new version'
         if: always()
         run: echo "new version is ${{ steps.bump.outputs.new_version }}"

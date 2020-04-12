@@ -1,0 +1,11 @@
+name: Find last tag
+description: 'This action gets the last tag from a directory. If none are found then it returns 0.0.0'
+
+outputs:
+    last_tag:
+        description: 'the last tag that found or 0.0.0'
+
+runs:
+    using: 'docker'
+    image: 'docker://alpine/git:2.24.1'
+    entrypoint: './scripts/find_last_tag.sh'
