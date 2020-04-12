@@ -10,15 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 'find last tag'
+      - name: 'find last tag and release'
         id: 'last_tag'
-        uses: './.github/actions/last-tag'
+        uses: './.github/actions/last-tag-and-release'
       - name: 'bump version'
         id: bump
         if: always()
         uses: './.github/actions/semver'
         with:
           current_version: ${{ steps.last_tag.outputs.last_tag }}
+          release: ${{ steps.last_tag.outputs.release }}
       - name: 'print new version'
         if: always()
         run: echo "new version is ${{ steps.bump.outputs.new_version }}"
