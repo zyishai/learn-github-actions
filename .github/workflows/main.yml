@@ -20,7 +20,9 @@ jobs:
           - GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'set the last version'
         if: success()
-        run: ${{ env.version = steps.last_tag.outputs.tag }}
+        with:
+          LAST_TAG: ${{ steps.last_tag.outputs.tag }}
+        run: echo "::set-env name=version::$LAST_TAG"
       - name: 'bump version'
         id: bump
         if: always()
