@@ -1,0 +1,19 @@
+name: Bump version
+description: 'This action gets a version and a future release (default: minor) and bump the version accordingly.'
+
+inputs:
+    current_version:
+        description: 'current version to update'
+        required: true
+    release:
+        description: 'which release to update'
+        required: false
+        default: minor
+outputs:
+    new_version:
+        description: 'the updated version'
+
+runs:
+    using: 'docker'
+    image: 'docker://alpine/semver:5.5.0'
+    entrypoint: './scripts/bump_version.sh'
