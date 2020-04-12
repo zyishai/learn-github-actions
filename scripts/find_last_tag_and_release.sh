@@ -16,8 +16,9 @@ fi
 
 case "$log" in
     *#major* ) echo "::set-output name=release::major";;
+    *#minor* ) echo "::set-output name=release::minor";;
     *#patch* ) echo "::set-output name=release::patch";;
-    * ) echo "::set-output name=release::minor";;
+    * ) echo "::set-output name=release::none";;
 esac
 
 echo "::set-output name=last_tag::$t"

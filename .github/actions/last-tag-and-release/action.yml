@@ -1,11 +1,11 @@
 name: Find last tag and release
-description: 'This action gets the last tag from a directory and release type. Default tag if none is found is 0.0.0. Default release is minor'
+description: 'This action gets the last tag from a directory and release type. Default tag if none is found is 0.0.0.'
 
 outputs:
     last_tag:
         description: 'the last tag that found or 0.0.0'
     release:
-        description: 'release type (one of major, minor, patch)'
+        description: 'release type (one of major, minor, patch or none)'
 
 runs:
     using: 'docker'
